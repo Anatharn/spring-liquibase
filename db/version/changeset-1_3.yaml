@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: version_1.3_add_person
+      author: seb
+      changes:
+        - insert:
+            tableName: person
+            columns:
+              - column:
+                  name: firstname
+                  value: Naomi
+              - column:
+                  name: lastname
+                  value: Nagata
+        - insert:
+            tableName: person
+            columns:
+              - column:
+                  name: firstname
+                  value: Alex
+              - column:
+                  name: lastname
+                  value: Kamal
+        - insert:
+            tableName: person
+            columns:
+              - column:
+                  name: firstname
+                  value: Amos
+              - column:
+                  name: lastname
+                  value: Burton
+        - tagDatabase:
+            tag: version_1.3
+      rollback:
+        - delete:
+            tableName: person
+            where: firstname='Amos' and lastname='Burton'
+        - delete:
+            tableName: person
+            where: firstname='Alex' and lastname='Kamal'
+        - delete:
+            tableName: person
+            where: firstname='Naomi' and lastname='Nagata'
+  - changeSet:
+      id: version_1.3_add_company
+      author: seb
+      changes:
+        - insert:
+            tableName: company
+            columns:
+              - column:
+                  name: name
+                  value: Tycho Station
+              - column:
+                  name: city
+                  value: Space
+        - tagDatabase:
+            tag: version_1.3
+      rollback:
+        - delete:
+            tableName: company
+            where: name='Tycho Station' and city='Space'

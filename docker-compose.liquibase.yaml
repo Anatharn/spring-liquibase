@@ -1,0 +1,15 @@
+version: '3.9'
+
+networks:
+  spring-liquibase-poc-net:
+
+services:
+  liquibase:
+    container_name: liquibase
+    image: liquibase/liquibase
+    command: --url=jdbc:mariadb://maria_db:3306/spingliquibasepoc?user=spingliquibasepoc&password=spingliquibasepoc --changeLogFile=db/changelog/db.changelog-master.yaml rollbackCount 1
+    volumes:
+      - ./db/changelog/.:/liquibase/db/changelog/.
+      - ./db/version/.:/liquibase/db/version/.
+    networks:
+      - spring-liquibase-poc-net

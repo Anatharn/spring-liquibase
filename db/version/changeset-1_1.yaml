@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: version_1.1
+      author: seb
+      changes:
+        - createTable:
+            tableName: company
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: city
+                  type: varchar(50)
+        - tagDatabase:
+            tag:  version_1.1

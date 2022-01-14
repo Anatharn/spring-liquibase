@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: version_1.2
+      author: seb
+      changes:
+        - insert:
+            tableName: person
+            columns:
+              - column:
+                  name: firstname
+                  value: James
+              - column:
+                  name: lastname
+                  value: Holden
+        - tagDatabase:
+            tag: version_1.2
+      rollback:
+        - delete:
+            tableName: person
+            where: firstname='James' and lastname='Holden'

@@ -1,0 +1,23 @@
+version: '3.9'
+
+volumes:
+  mariadb-data:
+
+services:
+  maria_db:
+    container_name: maria_db
+    image: mariadb:10.3
+    ports:
+      - 4444:3306
+    volumes:
+      - mariadb-data:/var/lib/mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+      MARIADB_DATABASE: spingliquibasepoc
+      MARIADB_USER: spingliquibasepoc
+      MARIADB_PASSWORD: spingliquibasepoc
+    networks:
+      - spring-liquibase-poc-net
+
+networks:
+  spring-liquibase-poc-net:
